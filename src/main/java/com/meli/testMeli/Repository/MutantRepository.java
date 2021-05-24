@@ -11,10 +11,8 @@ import java.util.List;
 
 @Repository
 public interface MutantRepository extends JpaRepository<Mutants, Long> {
-    @Query(value = "select countMutantDna, countHumanDna, cast(countMutantDna as float4)/cast(countHumanDna as float4) as ratio from (" +
-            "select count(mutant) as countMutantDna , " +
-            "(select count(mutant) as countHumanDna " +
-            "from public.mutants mt where mt.mutant = false)  " +
-            "from public.mutants mt where mt.mutant = true) as result", nativeQuery = true)
-    public ArrayList<AverageMutantsPojo> averageMutants();
+    @Query(value = "select count(mt.mutant) from mutants mt where mt.mutant = true", nativeQuery = true)
+    public int getCountMutants();
+    @Query(value = "select count(mt.mutant) from mutants mt where mt.mutant = false", nativeQuery = true)
+    public int getCountHumans();
 }

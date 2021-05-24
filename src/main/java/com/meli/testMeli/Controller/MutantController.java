@@ -38,8 +38,13 @@ public class MutantController {
     }
 
     @GetMapping("/stats")
-    public ResponseEntity<ArrayList<AverageMutantsPojo>>averageMutants(){
-        ArrayList<AverageMutantsPojo> response = mutantRepository.averageMutants();
-        return new ResponseEntity<ArrayList<AverageMutantsPojo>>(response, HttpStatus.OK);
+    public ResponseEntity<AverageMutantsPojo>averageMutants(){
+        int countMutants = mutantRepository.getCountMutants();
+        int countHumans = mutantRepository.getCountHumans();
+        float ratio = (float)countMutants/ (float)countHumans;
+
+        AverageMutantsPojo response = new AverageMutantsPojo(countMutants, countHumans, ratio);
+
+        return new ResponseEntity<AverageMutantsPojo>(response, HttpStatus.OK);
     }
 }
