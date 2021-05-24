@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("mutant")
+@RequestMapping("/mutant")
 public class MutantController {
 
     @Autowired
