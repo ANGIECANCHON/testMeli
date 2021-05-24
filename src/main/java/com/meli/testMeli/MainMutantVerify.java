@@ -1,11 +1,17 @@
-package com.meli.testMeli.Service;
+package com.meli.testMeli;
 
-import org.springframework.stereotype.Service;
+public class MainMutantVerify {
+    public static void main(String[] args){
+        String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
+        Boolean res = isMutantStatic( dna );
+        if(res){
+            System.out.println("DNA indicates that it is a mutant");
+        }else {
+            System.out.println("DNA indicates that it is an ordinary human");
+        }
+    }
 
-@Service
-public class MutantVerifyService {
-
-    public boolean isMutant(String[] dna){
+    public static boolean isMutantStatic(String[] dna){
         int total = 0;
         int cont = 0;
 
@@ -51,7 +57,7 @@ public class MutantVerifyService {
         return false;
     }
 
-    public boolean isEqual(char a, char b){
+    public static boolean isEqual(char a, char b){
         boolean res = (a == b) ? true : false;
 
         return res;
